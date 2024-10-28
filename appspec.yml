@@ -1,0 +1,71 @@
+version: 0.0
+os: linux
+
+files:
+  # Copy the WAR file to the Tomcat webapps directory
+  - source: target/sparkjava-hello-world-1.0.war
+    destination: /home/tomcat/deploy/
+    # tomcatpath-- /opt/tomcat/webapps/
+
+permissions:
+  - object: scripts/
+    pattern: "*.sh"
+    except:
+    owner: tomcat
+    group: tomcat
+    mode: 750
+    type:
+      - file
+  - object: target/
+    pattern: "*.war"
+    except:
+    owner: tomcat
+    group: tomcat
+    mode: 644
+    type:
+      - file
+
+hooks:
+     ApplicationStop:
+      - location: scripts/stop_tomcat.sh
+        timeout: 300
+      #runas: tomcat
+     AfterInstall:
+      - location: scripts/file-copy.sh
+        timeout: 300
+      #runas: tomcat
+     ApplicationStart:
+      - location: scripts/start_tomcat.sh    
+        timeout: 300
+      #runas: tomcat
+    
+  # BeforeInstall:
+  #   # Stop Tomcat service and clean up old WAR files
+  #   - location: /dev/null
+  #     timeout: 300
+  #     runas: tomcat
+  #     # Inline script to stop Tomcat and clean up old deployment
+  #     script: |
+  #       echo "Stopping Tomcat..."
+  #       sudo sh /opt/tomcat/bin/shutdown.sh
+  #       echo "Cleaning up old WAR files..."
+  #       sudo rm -rf /opt/tomcat/webapps/sparkjava*
+
+  # AfterInstall:
+  #   # Optional: Add any post-installation commands
+  #   - location: /dev/null
+  #     timeout: 300
+  #     runas: tomcat
+  #     script: |
+  #       echo "After install steps completed."
+  #       sudo ls -lrth /opt/tomcat/webapps/
+
+  # ApplicationStart:
+  #   # Start Tomcat service after WAR deployment
+  #   - location: /dev/null
+  #     timeout: 300
+  #     runas: tomcat
+  #     script: |
+  #       echo "Starting Tomcat..."
+  #       sudo sh /opt/tomcat/bin/startup.sh
+  #       sudo ps -ef | grep tomcat
