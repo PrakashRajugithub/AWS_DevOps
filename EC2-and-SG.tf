@@ -66,6 +66,7 @@ resource "aws_instance" "ec2-instance1" {
   subnet_id = aws_subnet.public[0].id
   vpc_security_group_ids = [aws_security_group.instance-sg.id]
   key_name = aws_key_pair.ec2.id
+  iam_instance_profile = aws_iam_instance_profile.ec2_codedeploy_instance_profile.name
   user_data = <<-EOF
               #!/bin/bash
               yum update -y
@@ -80,6 +81,8 @@ resource "aws_instance" "ec2-instance1" {
               wget https://aws-codedeploy-ap-southeast-1.s3.amazonaws.com/latest/install
               chmod +x ./install
               sudo ./install auto
+              sudo service codedeploy-agent start
+              sudo service codedeploy-agent enable
               sudo -i
               sudo useradd -d /home/tomcat tomcat
               sudo wget https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.96/bin/apache-tomcat-9.0.96.tar.gz
@@ -104,6 +107,7 @@ resource "aws_instance" "ec2-instance2" {
   instance_type = "t2.micro"
   subnet_id = aws_subnet.public[1].id
   key_name = aws_key_pair.ec2.id
+  iam_instance_profile = aws_iam_instance_profile.ec2_codedeploy_instance_profile.name
   vpc_security_group_ids = [aws_security_group.instance-sg.id]
    user_data = <<-EOF
               #!/bin/bash
@@ -119,6 +123,8 @@ resource "aws_instance" "ec2-instance2" {
               wget https://aws-codedeploy-ap-southeast-1.s3.amazonaws.com/latest/install
               sudo chmod +x ./install
               sudo ./install auto
+              sudo service codedeploy-agent start
+              sudo service codedeploy-agent enable
               sudo -i
               sudo useradd -d /home/tomcat tomcat
               sudo wget https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.96/bin/apache-tomcat-9.0.96.tar.gz

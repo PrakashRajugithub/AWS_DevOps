@@ -5,8 +5,8 @@ if [ "$(whoami)" != "tomcat" ]; then
 fi
 
 sh /opt/tomcat/bin/shutdown.sh
-SHUTDOWN_PORT=`netstat -vatn|grep LISTEN|grep 8005|wc -l`
-if [ $SHUTDOWN_PORT -ne 0 ]; then
+SHUTDOWN=`ps -ef|grep 'catalina.base=/opt/tomcat/'|wc -l`
+if [ $SHUTDOWN -ne 0 ]; then
 echo "Tomcat is running"
 else
 echo "Tomcat is Stopped"

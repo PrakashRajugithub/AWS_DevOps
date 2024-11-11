@@ -3,7 +3,7 @@ resource "aws_codepipeline" "pipeline" {
   role_arn = aws_iam_role.codepipeline_role.arn
 
   artifact_store {
-    location = aws_s3_bucket.BuildArtifacts.bucket
+    location = aws_s3_bucket.BuildArtifacts1.bucket
     type     = "S3"
   }
 
@@ -18,9 +18,9 @@ resource "aws_codepipeline" "pipeline" {
       output_artifacts = ["source_output"]
       configuration = {
         Owner      = "PrakashRajugithub"
-        Repo       = "sparkjava-war-example"
-        Branch     = "master"
-        OAuthToken = "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"
+        Repo       = "AWS_DevOps"
+        Branch     = "main"
+        OAuthToken = "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"
       }
     }
   }

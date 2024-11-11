@@ -29,15 +29,15 @@ hooks:
      ApplicationStop:
       - location: scripts/stop_tomcat.sh
         timeout: 300
-      #runas: tomcat
+        runas: tomcat
      AfterInstall:
       - location: scripts/file-copy.sh
         timeout: 300
-      #runas: tomcat
+        runas: tomcat
      ApplicationStart:
       - location: scripts/start_tomcat.sh    
         timeout: 300
-      #runas: tomcat
+        runas: tomcat
     
   # BeforeInstall:
   #   # Stop Tomcat service and clean up old WAR files

@@ -4,7 +4,7 @@ resource "aws_codebuild_project" "build_project" {
 
   artifacts {
     type = "S3"
-    location = aws_s3_bucket.BuildArtifacts.bucket
+    location = aws_s3_bucket.BuildArtifacts1.bucket
   }
 
   environment {
@@ -28,7 +28,7 @@ resource "aws_codebuild_project" "build_project" {
 
   source {
     type      = "GITHUB"
-    location  = "https://github.com/PrakashRajugithub/sparkjava-war-example.git"
+    location  = "https://github.com/PrakashRajugithub/AWS_DevOps.git"
     buildspec = <<BUILD_SPEC
 version: 0.2
 

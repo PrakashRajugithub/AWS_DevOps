@@ -1,3 +1,3 @@
-resource "aws_s3_bucket" "BuildArtifacts" {
-    bucket = "storingartifacts"
+resource "aws_s3_bucket" "BuildArtifacts1" {
+    bucket = "storingartifacts1"
   }
