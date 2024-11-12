@@ -2,6 +2,12 @@
 
 set -e
 
+sudo wget https://aws-codedeploy-ap-southeast-1.s3.amazonaws.com/latest/install
+sudo chmod +x ./install
+sudo ./install auto
+sudo service codedeploy-agent start
+sudo service codedeploy-agent enable
+
 CATALINA_HOME=/opt/tomcat
 TOMCAT_VERSION=9.0.97
 
