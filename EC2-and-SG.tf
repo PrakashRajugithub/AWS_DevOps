@@ -85,11 +85,11 @@ resource "aws_instance" "ec2-instance1" {
               sudo service codedeploy-agent enable
               sudo -i
               sudo useradd -d /home/tomcat tomcat
-              sudo wget https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.97/bin/apache-tomcat-9.0.97.tar.gz
-              sudo mkdir -p /opt/tomcat
-              sudo tar -xzf apache-tomcat-9.0.97.tar.gz -C /opt/tomcat --strip-components=1
-              sudo chown -R tomcat:tomcat /opt/tomcat/
-              sudo chmod 755 /opt/tomcat/bin/*.sh
+              #sudo wget https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.97/bin/apache-tomcat-9.0.97.tar.gz
+              #sudo mkdir -p /opt/tomcat
+              #sudo tar -xzf apache-tomcat-9.0.97.tar.gz -C /opt/tomcat --strip-components=1
+              #sudo chown -R tomcat:tomcat /opt/tomcat/
+              #sudo chmod 755 /opt/tomcat/bin/*.sh
               sudo mkdir -p /home/tomcat/deploy/
               EOF
   
@@ -127,11 +127,11 @@ resource "aws_instance" "ec2-instance2" {
               sudo service codedeploy-agent enable
               sudo -i
               sudo useradd -d /home/tomcat tomcat
-              sudo wget https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.97/bin/apache-tomcat-9.0.97.tar.gz
-              sudo mkdir -p /opt/tomcat
-              sudo tar -xzf apache-tomcat-9.0.97.tar.gz -C /opt/tomcat --strip-components=1
-              sudo chown -R tomcat:tomcat /opt/tomcat/
-              sudo chmod 755 /opt/tomcat/bin/*.sh
+              #sudo wget https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.97/bin/apache-tomcat-9.0.97.tar.gz
+              #sudo mkdir -p /opt/tomcat
+              #sudo tar -xzf apache-tomcat-9.0.97.tar.gz -C /opt/tomcat --strip-components=1
+              #sudo chown -R tomcat:tomcat /opt/tomcat/
+              #sudo chmod 755 /opt/tomcat/bin/*.sh
               sudo mkdir -p /home/tomcat/deploy/
               EOF
   

@@ -28,21 +28,23 @@ hooks:
       timeout: 300
       runas: tomcat
   BeforeInstall:
-    - location: scripts/tomcat_status.sh
+    - location: scripts/install_dependencies.sh
       timeout: 300
       runas: tomcat    
-  BlockTraffic:
-    - location: scripts/block_traffic.sh
-      timeout: 300
-      runas: tomcat
+  # BlockTraffic:
+  #   - location: scripts/block_traffic.sh
+  #     timeout: 300
+  #     runas: tomcat
   AfterInstall:
     - location: scripts/file-copy.sh
       timeout: 300
       runas: tomcat
   ApplicationStart:
-    - location: scripts/start_tomcat.sh    
+    - location: scripts/start_tomcat.sh
       timeout: 300
       runas: tomcat
+  ValidateService:
+    - location: scripts/basic_health_check.sh
 
 
 # version: 0.0
