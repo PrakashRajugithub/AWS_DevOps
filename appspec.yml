@@ -9,15 +9,15 @@ files:
 permissions:
   - object: scripts/
     pattern: "*.sh"
-    owner: tomcat
-    group: tomcat
+    owner: root
+    group: root
     mode: 750
     type:
       - file
   - object: target/
     pattern: "*.war"
-    owner: tomcat
-    group: tomcat
+    owner: root
+    group: root
     mode: 644
     type:
       - file
@@ -26,11 +26,11 @@ hooks:
   ApplicationStop:
     - location: scripts/stop_tomcat.sh
       timeout: 300
-      runas: tomcat
+      # runas: tomcat
   BeforeInstall:
     - location: scripts/install_dependencies.sh
       timeout: 300
-      runas: tomcat    
+      # runas: tomcat    
   # BlockTraffic:
   #   - location: scripts/block_traffic.sh
   #     timeout: 300
@@ -38,11 +38,11 @@ hooks:
   AfterInstall:
     - location: scripts/file-copy.sh
       timeout: 300
-      runas: tomcat
+      # runas: tomcat
   ApplicationStart:
     - location: scripts/start_tomcat.sh
       timeout: 300
-      runas: tomcat
+      # runas: tomcat
   ValidateService:
     - location: scripts/basic_health_check.sh
 
